@@ -125,13 +125,14 @@ namespace Quantum.Kata.BasicGates {
     // Goal:  Change the two-qubit state to |Ψ⁺⟩ = (|01⟩ + |10⟩) / sqrt(2).
   
     operation BellStateChange2 (qs : Qubit[]) : Unit is Adj+Ctl {
-       Y(qs[0]);
+       X(qs[0]);
     }
     // Task 1.9. Bell state change - 3
     // Input: Two entangled qubits in Bell state |Φ⁺⟩ = (|00⟩ + |11⟩) / sqrt(2).
     // Goal:  Change the two-qubit state to |Ψ⁻⟩ = (|01⟩ - |10⟩) / sqrt(2).
     operation BellStateChange3 (qs : Qubit[]) : Unit is Adj+Ctl {
-        // ...
+       X(qs[0]);
+	   Z(qs[0]);
     }
 
 
@@ -148,7 +149,7 @@ namespace Quantum.Kata.BasicGates {
     // the resulting two-qubit state can not be represented as a tensor product
     // of the states of individual qubits any longer; thus the qubits become entangled.
     operation TwoQubitGate1 (qs : Qubit[]) : Unit is Adj {
-        // ...
+        CNOT(qs[0], qs[1]);
     }
 
 
@@ -159,7 +160,7 @@ namespace Quantum.Kata.BasicGates {
     // Note that while the starting state can be represented as a tensor product of single-qubit states,
     // the resulting two-qubit state can not be represented in such a way.
     operation TwoQubitGate2 (qs : Qubit[]) : Unit is Adj {
-        // ...
+        Controlled Z([qs[0]], qs[1]);
     }
 
 
@@ -171,7 +172,7 @@ namespace Quantum.Kata.BasicGates {
         // Hint: this task can be solved using one intrinsic gate;
         // as an exercise, try to express the solution using several
         // (possibly controlled) Pauli gates.
-        // ...
+        SWAP(qs[0], qs[1]);
     }
 
 
@@ -182,7 +183,7 @@ namespace Quantum.Kata.BasicGates {
     //        i.e., change the three-qubit state to
     //        α|000⟩ + β|001⟩ + γ|010⟩ + δ|011⟩ + ε|100⟩ + ζ|101⟩ + θ|110⟩ + η|111⟩.
     operation ToffoliGate (qs : Qubit[]) : Unit is Adj {
-        // ...
+        CCNOT(qs[0], qs[1], qs[2]);
     }
 
 
@@ -192,7 +193,7 @@ namespace Quantum.Kata.BasicGates {
     // Goal:  Swap the states of second and third qubit if and only if the state of the first qubit is |1⟩:
     //        α|000⟩ + β|001⟩ + γ|010⟩ + δ|011⟩ + ε|100⟩ + η|101⟩ + ζ|110⟩ + θ|111⟩.
     operation FredkinGate (qs : Qubit[]) : Unit is Adj {
-        // ...
+        Controlled SWAP([qs[0]], (qs[1], qs[2]));
     }
 
 }
